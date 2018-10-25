@@ -8,6 +8,7 @@ from django.views.generic import (View, TemplateView,
                                 CreateView, UpdateView,
                                 DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
 #below is a list of dictionaries
@@ -103,7 +104,9 @@ def about(request):
 
 ############# Comments Section #############
 
-@login_required
+
+# @login_required
+@user_passes_test(lambda u: u.is_superuser)
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
