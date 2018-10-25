@@ -123,7 +123,7 @@ def add_comment_to_post(request,pk):
     else:
         form = CommentForm()
 
-    return render(request, 'first_blog/comment_form.html', {'form':form})
+    return render(request, 'blog/comment_form.html', {'form':form})
 
 @login_required
 def comment_approved(request, pk):
